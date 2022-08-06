@@ -326,7 +326,7 @@ app.post("/api/admin/pin", (req, res) => {
 });
 // Admin New Password
 
-app.put("/api/admin/newpassword", (req, res) => {
+app.post("/api/admin/newpassword", (req, res) => {
   adminnew =
     Math.random().toString(36).substring(2, 5) +
     "adm" +
@@ -340,7 +340,6 @@ app.put("/api/admin/newpassword", (req, res) => {
       { $set: { password: adminnew } }
     )
     .then((data) => {
-      console.log(pin);
       if (data !== null) {
         const mail = req.body.email;
         sendMail((step = 1), mail, adminnew)
