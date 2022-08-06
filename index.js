@@ -368,7 +368,10 @@ app.post("/api/student/register", (req, res) => {
 
   register = req.body.data;
 
-  studentData
+  studentData.find({email:register.email}).then((data)=>{
+    if(data.length!=0){
+      if(data[0].status===undefined){
+        studentData
     .findOneAndUpdate(
       { email: register.email },
       {
@@ -388,6 +391,38 @@ app.post("/api/student/register", (req, res) => {
     .then((data) => {
       res.send(data);
     });
+
+    }
+    else{
+      res.send(undefined)
+    }
+  }
+    else{
+      res.send(null)
+    }
+
+  })
+
+  // studentData
+  //   .findOneAndUpdate(
+  //     { email: register.email },
+  //     {
+  //       $set: {
+  //         name: register.name,
+  //         phone: register.phone,
+  //         course: register.course,
+  //         batch: register.batch,
+  //         image: req.body.url,
+  //         startDate: register.startDate,
+  //         endDate: register.endDate,
+  //         status: "Submitted",
+  //         Date: dates,
+  //       },
+  //     }
+  //   )
+  //   .then((data) => {
+  //     res.send(data);
+  //   });
 });
 
 app.get("/api/idcard/:id", (req, res) => {
