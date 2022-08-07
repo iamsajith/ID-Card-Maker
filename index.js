@@ -119,7 +119,7 @@ app.post("/api/student", (req, res) => {
   res.header("Access-Control-Allow-Method:GET,POST,PUT,DELETE");
   studentData
     .findOne(
-      { email: req.body.email, password: req.body.password },
+      { email: req.body.email.toLowerCase(), password: req.body.password },
       (err, user) => {
         if (err) {
           console.log("error is", err);
@@ -147,7 +147,7 @@ app.post("/api/moderator", (req, res) => {
   res.header("Access-Control-Allow-Method:GET,POST,PUT,DELETE");
   moderatorData
     .findOne(
-      { email: req.body.email, password: req.body.password },
+      { email: req.body.email.toLowerCase(), password: req.body.password },
       (err, user) => {
         if (err) {
           console.log("error is", err);
@@ -175,7 +175,7 @@ app.post("/api/admin", (req, res) => {
   res.header("Access-Control-Allow-Method:GET,POST,PUT,DELETE");
   adminData
     .findOne(
-      { email: req.body.email, password: req.body.password },
+      { email: req.body.email.toLowerCase(), password: req.body.password },
       (err, user) => {
         if (err) {
           console.log("error is", err);
